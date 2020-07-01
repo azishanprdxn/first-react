@@ -6,6 +6,35 @@ body {
   background-color: #2c3e50;
   color: #ecf0f1;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
+}
+
+nav {
+  background-color: #ecf0f1;
+  height: 50px;
+  text-align: center;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+nav ul a {
+  color: #2c3e50;
+  font-size: 18px;
+  text-decoration: none;
+  line-height: 50px;
+}
+
+nav ul a:hover {
+  text-decoration: underline;
+}
+
+nav ul li {
+  display: inline-block;
+  margin: 0 24px;
 }
 
 .flex-container {
@@ -31,15 +60,19 @@ body {
   box-shadow: 1px 1px 10px #3498db;
 }
 
-h1, p {
+h2, p {
   text-align: center;
 }
 
-h1 {
+h2 {
+  margin-top: 32px;
   font-size: 18px;
 }
 
-h1:first-child {
-  margin-top: 54px;
-  font-size: 24px;
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  background-color: #ecf0f1;
+  color: #2c3e50;
 }

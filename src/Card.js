@@ -7,7 +7,7 @@ class Card extends Component {
       <div className="flexbox">
         <div className="content" title={this.props.name}>
           <img src={`https://joeschmoe.io/api/v1/${this.props.name}`} alt="Avatar" />
-          <h1>My name is {this.props.name}</h1>
+          <h2>My name is {this.props.name}</h2>
           <p>I am a {this.props.post}</p>
         </div>
       </div>
