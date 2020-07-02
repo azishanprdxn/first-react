@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 // My Code
-import Demo from './Demo';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Demo />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
