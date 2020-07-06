@@ -11,6 +11,11 @@ body {
   overflow-y: scroll;
 }
 
+header {
+  position: sticky;
+  top: 0;
+}
+
 nav {
   background-color: #ecf0f1;
   height: 50px;
@@ -80,6 +85,24 @@ h2, p {
 h2 {
   margin-top: 32px;
   font-size: 18px;
+}
+
+.data-title {
+  font-variant: small-caps;
+  font-size: 18px;
+}
+
+.data-title ul {
+  list-style: none;
+}
+
+.data-title li {
+  padding: 6px 12px;
+}
+
+.data-title p {
+  margin-top: 2px;
+  text-align: left;
 }
 
 footer {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router } from "react-router-dom";
-import axios from 'axios';
 
 import Header from './header/Header';
 import Main from './main/Main';
@@ -24,21 +23,7 @@ window.onload = () => {
   }
 }
 
-let data;
-
 class App extends Component {
-  componentDidMount() {
-    // Axios
-    axios.get('http://jsonplaceholder.typicode.com/posts')
-      .then(function (response) {
-        data = response.data;
-        console.log(data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-
   render() {
     return (
       <Router>

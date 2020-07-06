@@ -3,8 +3,10 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import axios from 'axios';
 
 import Card from './Card';
+import ScrollToTop from './../ScrollToTop';
 
 class Main extends Component {
   render() {
@@ -12,6 +14,7 @@ class Main extends Component {
       <main>
         {/* A <Switch> looks through its children <Route>s and
         renders the first one that matches the current URL. */}
+        <ScrollToTop />
         <Switch>
           <Route path="/users" component={Users} />
           <Route path="/about" component={About} />
@@ -30,12 +33,38 @@ export const Home = () => {
   );
 }
 
-export const About = () => {
-  return (
-    <div>
-      <h2>This is About Page</h2>
-    </div>
-  );
+export class About extends Component {
+  state = {
+    data: []
+  }
+
+  componentDidMount() {
+    // Axios
+    axios.get('http://jsonplaceholder.typicode.com/posts')
+      .then(response => {
+        this.setState({ data: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  render() {
+    const lists = this.state.data.map((list, i) => {
+      return (
+        <li key={this.state.data[i].id}>
+          {this.state.data[i].id}. {this.state.data[i].title}
+          <p>{this.state.data[i].body}</p>
+        </li>
+      );
+    });
+
+    return (
+      <div className="data-title">
+        <ul>{lists}</ul>
+      </div>
+    );
+  }
 }
 
 export class Users extends Component {
@@ -64,7 +93,7 @@ export class Users extends Component {
     ]
 
     const cardDetails = userArray.map((cardDetail, i) => {
-      return <Card key={userArray[i].id} name={userArray[i].name} post={userArray[i].post}></Card>
+      return <Card key={userArray[i].id} name={userArray[i].name} post={userArray[i].post} />
     });
 
     return (
