@@ -40,7 +40,7 @@ export class About extends Component {
 
   componentDidMount() {
     // Axios
-    axios.get('http://jsonplaceholder.typicode.com/posts')
+    axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(response => {
         this.setState({ data: response.data });
       })
