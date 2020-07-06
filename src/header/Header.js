@@ -15,7 +15,6 @@ class Header extends Component {
   }
 
   render() {
-
     return (
       <header>
         <nav>
@@ -33,22 +32,6 @@ class Header extends Component {
         </nav>
       </header>
     );
-  }
-}
-
-window.onload = () => {
-  const activeURL = document.querySelectorAll('header a');
-  for (let i = 0; i < activeURL.length; i++) {
-    activeURL[i].className = '';
-  }
-  if (window.location.pathname === '/') {
-    activeURL[0].className = 'active';
-  }
-  if (window.location.pathname === '/about') {
-    activeURL[1].className = 'active';
-  }
-  if (window.location.pathname === '/users') {
-    activeURL[2].className = 'active';
   }
 }
 

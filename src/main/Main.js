@@ -23,11 +23,19 @@ class Main extends Component {
 }
 
 export const Home = () => {
-  return <h2>This is Home Page</h2>;
+  return (
+    <div>
+      <h2>This is Home Page</h2>
+    </div>
+  );
 }
 
 export const About = () => {
-  return <h2>This is About Page</h2>;
+  return (
+    <div>
+      <h2>This is About Page</h2>
+    </div>
+  );
 }
 
 export class Users extends Component {
