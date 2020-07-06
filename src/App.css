@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   padding: 0;
@@ -22,19 +24,30 @@ nav ul {
 }
 
 nav ul a {
+  padding: 2px 8px;
   color: #2c3e50;
   font-size: 18px;
   text-decoration: none;
   line-height: 50px;
 }
 
-nav ul a:hover {
+nav ul a:hover:not(.active) {
   text-decoration: underline;
 }
 
 nav ul li {
   display: inline-block;
-  margin: 0 24px;
+  margin: 0 12px;
+}
+
+nav .active {
+  border: 2px solid #2c3e50;
+  border-radius: 4px;
+  margin: -2px;
+}
+
+main {
+  height: 800px;
 }
 
 .flex-container {
@@ -71,8 +84,11 @@ h2 {
 
 footer {
   width: 100%;
-  position: fixed;
-  bottom: 0;
   background-color: #ecf0f1;
   color: #2c3e50;
+}
+
+footer p {
+  padding: 18px 0;
+  margin: 0;
 }
