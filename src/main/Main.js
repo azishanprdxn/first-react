@@ -7,6 +7,8 @@ import axios from 'axios';
 
 import Card from './Card';
 import ScrollToTop from './../ScrollToTop';
+import Loader from './../loader/Loader';
+import userArray from './UserArray';
 
 class Main extends Component {
   render() {
@@ -28,79 +30,88 @@ class Main extends Component {
 export const Home = () => {
   return (
     <div>
-      <h2>This is Home Page</h2>
+      <div className="home-banner">
+        <h2>Home Page</h2>
+      </div>
+      <h2>Content goes here...</h2>
     </div>
   );
 }
 
 export class About extends Component {
-  state = {
-    data: []
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      data: [],
+      showData: 10
+    }
   }
 
   componentDidMount() {
     // Axios
     axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(response => {
-        this.setState({ data: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+      .then(
+        (res) => {
+          this.setState({
+            isLoaded: true,
+            data: res.data
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+  handleClick() {
+    this.setState({ showData: this.state.showData + 10 })
   }
 
   render() {
-    const lists = this.state.data.map((list, i) => {
+    const { error, isLoaded, data, showData } = this.state;
+    if (error) {
+      return <h2>Error: {error.message}</h2>;
+    } else if (!isLoaded) {
+      return <Loader />;
+    } else {
       return (
-        <li key={this.state.data[i].id}>
-          {this.state.data[i].id}. {this.state.data[i].title}
-          <p>{this.state.data[i].body}</p>
-        </li>
+        <div className="data-title">
+          <ul>
+            {data.slice(0, showData).map(item => (
+              <li key={item.id}>
+                {item.id}. {item.title}
+                <p>{item.body}</p>
+              </li>
+            ))}
+          </ul>
+          {
+            showData < 100 ?
+              <div className="show-more">
+                <button title="Show More" onClick={this.handleClick}>Show More</button>
+              </div> : null
+          }
+        </div>
       );
-    });
-
-    return (
-      <div className="data-title">
-        <ul>{lists}</ul>
-      </div>
-    );
+    }
   }
 }
 
 export class Users extends Component {
   render() {
-    const userArray = [
-      {
-        id: 1,
-        name: 'Zishan Ansari',
-        post: 'Web Developer'
-      },
-      {
-        id: 2,
-        name: 'Anonymous',
-        post: 'Web Developer'
-      },
-      {
-        id: 3,
-        name: 'Anonymous User',
-        post: 'Web Developer'
-      },
-      {
-        id: 4,
-        name: 'Anonymous Three',
-        post: 'Web Developer'
-      },
-    ]
-
-    const cardDetails = userArray.map((cardDetail, i) => {
-      return <Card key={userArray[i].id} name={userArray[i].name} post={userArray[i].post} />
-    });
-
     return (
       <div>
         <h2>Users</h2>
         <div className="flex-container">
-          {cardDetails}
+          {userArray.map(item => (<Card key={item.id} name={item.name} post={item.post} />))}
         </div>
       </div>
     );
