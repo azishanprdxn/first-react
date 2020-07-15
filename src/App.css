@@ -159,6 +159,14 @@ footer p {
   margin: 0;
 }
 
+.form {
+  text-align: center;
+}
+
+.form div, .form button{
+  margin: 24px 0;
+}
+
 @media only screen and (max-width: 768px) {
   .flexbox { width: 50%;}
 }

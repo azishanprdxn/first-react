@@ -28,6 +28,9 @@ class Header extends Component {
             <li>
               <Link to="/users" title="Users" onClick={this.handleClick}>Users</Link>
             </li>
+            <li>
+              <Link to="/add-document" title="Add" onClick={this.handleClick}>Add Doc</Link>
+            </li>
           </ul>
         </nav>
       </header>

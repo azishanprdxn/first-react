@@ -21,6 +21,9 @@ window.onload = () => {
   if (window.location.pathname === '/users') {
     activeURL[2].className = 'active';
   }
+  if (window.location.pathname === '/add-document') {
+    activeURL[3].className = 'active';
+  }
 }
 
 class App extends Component {
